@@ -1,13 +1,13 @@
 # -*- coding: cp1250 -*-
 class Book:
-    # Zmienna klasowa działająca analogicznie do statycznej listy w C#
+    # Zmienna klasowa dziaĹ‚ajÄ…ca analogicznie do statycznej listy w C#
     zbiory = []
 
     def __init__(self, title, author):
         self.id = len(Book.zbiory)
         self.tytul = title
         self.autor = author
-        self.wypozyczona = False # Domyślnie dodawana książka nie jest wypożyczona
+        self.wypozyczona = False # DomyĹ›lnie dodawana ksiÄ…ĹĽka nie jest wypoĹĽyczona
 
     @staticmethod
     def dodajKsiazke(title, author):
@@ -16,15 +16,15 @@ class Book:
 
     @staticmethod
     def wyswietlKsiazki():
-        print("\n\n=== Dostępne książki ===")
+        print("\n\n=== DostÄ™pne ksiÄ…ĹĽki ===")
         for i, ksiazka in enumerate(Book.zbiory):
             if ksiazka is not None:
-                status = "Wypożyczona" if ksiazka.wypozyczona else "Dostępna"
-                print(f"{i}. {ksiazka.tytul} - {ksiazka.autor} - ID Książki: {i} [{status}]")
+                status = "WypoĹĽyczona" if ksiazka.wypozyczona else "DostÄ™pna"
+                print(f"{i}. {ksiazka.tytul} - {ksiazka.autor} - ID KsiÄ…ĹĽki: {i} [{status}]")
 
 
 class Person:
-    # Zmienna klasowa działająca analogicznie do statycznej listy w C#
+    # Zmienna klasowa dziaĹ‚ajÄ…ca analogicznie do statycznej listy w C#
     klienci = []
 
     def __init__(self, name):
@@ -41,35 +41,35 @@ class Person:
     def wypozyczKsiazke(pozyczajacy, idKsiazki):
         if len(pozyczajacy.wypozyczone) < 10:
             pozyczajacy.wypozyczone.append(Book.zbiory[idKsiazki])
-            Book.zbiory[idKsiazki].wypozyczona = True # Oznaczamy książkę jako wypożyczoną
+            Book.zbiory[idKsiazki].wypozyczona = True # Oznaczamy ksiÄ…ĹĽkÄ™ jako wypoĹĽyczonÄ…
         else:
-            print("Nie można wypożyczyć więcej niż 10 książek.")
+            print("Nie moĹĽna wypoĹĽyczyÄ‡ wiÄ™cej niĹĽ 10 ksiÄ…ĹĽek.")
 
     def zwrocKsiazke(self, zwracajacy, idKsiazki):
         ksiazka = Book.zbiory[idKsiazki]
         if ksiazka in zwracajacy.wypozyczone:
             zwracajacy.wypozyczone.remove(ksiazka)
-            ksiazka.wypozyczona = False # Oznaczamy książkę jako dostępna
+            ksiazka.wypozyczona = False # Oznaczamy ksiÄ…ĹĽkÄ™ jako dostÄ™pna
         else:
-            print("Ta książka nie jest wypożyczona przez tego klienta.")
+            print("Ta ksiÄ…ĹĽka nie jest wypoĹĽyczona przez tego klienta.")
 
     @staticmethod
     def wyswietlWypozyczone(id):
         klient = Person.klienci[id]
-        print(f"\n\n=== Wypożyczone książki przez {klient.imieNazwisko} ===")
+        print(f"\n\n=== WypoĹĽyczone ksiÄ…ĹĽki przez {klient.imieNazwisko} ===")
         for i, ksiazka in enumerate(klient.wypozyczone):
             idKsiazki = Book.zbiory.index(ksiazka)
-            print(f"{i+1}. {ksiazka.tytul} - {ksiazka.autor} - ID Książki: {idKsiazki}")
+            print(f"{i+1}. {ksiazka.tytul} - {ksiazka.autor} - ID KsiÄ…ĹĽki: {idKsiazki}")
 
     @staticmethod
     def wyswietlKlientow():
-        print("\n\n=== Wypożyczający ===")
+        print("\n\n=== WypoĹĽyczajÄ…cy ===")
         for i, klient in enumerate(Person.klienci):
             print(f"{i}. {klient.imieNazwisko}")
 
 
 def populator():
-    # Funkcja, aby nie trzeba było przy każdym odpaleniu "z palca" populować
+    # Funkcja, aby nie trzeba byĹ‚o przy kaĹĽdym odpaleniu "z palca" populowaÄ‡
     Person.nowyKlient("Spejson")
     Person.nowyKlient("Wojtas")
     Person.nowyKlient("KubaC")
@@ -87,14 +87,14 @@ def populator():
     Book.dodajKsiazke("Jak zdac cwiczenia z PPO?", "Praca zbiorowa studentow")
     Person.wypozyczKsiazke(Person.klienci[2], 3)
     
-    Book.dodajKsiazke("C# dla opornych", "Jakiś Programista")
+    Book.dodajKsiazke("C# dla opornych", "JakiĹ› Programista")
 
 
 def menu():
     print("\n\n=== Biblioteka => Projekt Jakuba Czerwika ===")
     print("Co chcesz zrobic?")
     print("1. Dodaj nowego Uzytkownika")
-    print("2. Wypożycz/zwróć książkę")
+    print("2. WypoĹĽycz/zwrĂłÄ‡ ksiÄ…ĹĽkÄ™")
     print("3. Raporty")
     print("4. Zakoncz program")
     
@@ -104,7 +104,7 @@ def menu():
         if wybor >= 5:
             wybor = 0
     except ValueError:
-        wybor = 0 # Niepoprawny wybór, ustawiamy na 0, aby nie było wyjątku
+        wybor = 0 # Niepoprawny wybĂłr, ustawiamy na 0, aby nie byĹ‚o wyjÄ…tku
         
     return wybor
 
@@ -117,18 +117,18 @@ def main():
         opcja = menu()
         
         if opcja == 1:
-            print("Podaj imię i nazwisko nowego klienta")
+            print("Podaj imiÄ™ i nazwisko nowego klienta")
             Person.nowyKlient(input())
             
         elif opcja == 2:
-            print("Naciśnij 1 aby wypożyczyć książkę lub dowolny inny klawisz żeby ją zwrócić")
+            print("NaciĹ›nij 1 aby wypoĹĽyczyÄ‡ ksiÄ…ĹĽkÄ™ lub dowolny inny klawisz ĹĽeby jÄ… zwrĂłciÄ‡")
             wypozyczZwroc = input()
             
             if wypozyczZwroc == "1":
                 Person.wyswietlKlientow()
                 print("Podaj id klienta")
                 idKlienta = int(input())
-                print("Podaj id książki")
+                print("Podaj id ksiÄ…ĹĽki")
                 Book.wyswietlKsiazki()
                 idKsiazki = int(input())
                 Person.wypozyczKsiazke(Person.klienci[idKlienta], idKsiazki)
@@ -137,27 +137,26 @@ def main():
                 print("Podaj id klienta")
                 idKlienta = int(input())
                 Person.wyswietlWypozyczone(idKlienta)
-                print("Podaj id książki")
+                print("Podaj id ksiÄ…ĹĽki")
                 idKsiazki = int(input())
                 Person.klienci[idKlienta].zwrocKsiazke(Person.klienci[idKlienta], idKsiazki)
                 
         elif opcja == 3:
-            print("Naciśnij 1 aby zobaczyć raport dostępnych książek lub dowolny inny klawisz żeby zobaczyć raport wypożyczeń klienta")
+            print("NaciĹ›nij 1 aby zobaczyÄ‡ raport dostÄ™pnych ksiÄ…ĹĽek lub dowolny inny klawisz ĹĽeby zobaczyÄ‡ raport wypoĹĽyczeĹ„ klienta")
             raport = input()
             
             if raport == "1":
                 Book.wyswietlKsiazki()
             else:
                 Person.wyswietlKlientow()
-                # Zgodnie z C#, brak printa z prośbą o wpisanie ID, od razu wczytujemy
                 id_do_raportu = int(input()) 
                 Person.wyswietlWypozyczone(id_do_raportu)
                 
         elif opcja == 4:
-            pass # Pętla zakończy się po tym kroku
+            pass # PÄ™tla zakoĹ„czy siÄ™ po tym kroku
             
         else:
-            print("Niepoprawna opcja, spróbuj ponownie.")
+            print("Niepoprawna opcja, sprĂłbuj ponownie.")
 
 
 if __name__ == "__main__":
